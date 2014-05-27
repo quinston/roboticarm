@@ -1,8 +1,11 @@
+#ifndef ARM_H
+#define ARM_H
+
 class Arm {
 	public:
 	enum HANDSTATUS { CLOSED, GRABBING, OPEN  };
 
-	Arm(int controlPin);
+	Arm(int);
 	HANDSTATUS grab();
 
 	void openHand();
@@ -10,9 +13,11 @@ class Arm {
 	void extend();
 	void retract();
 
-	HANDSTATUS getHandStatus();
+	HANDSTATUS pollHandStatus();
 
 	private:
 	int controlPin;
 	HANDSTATUS handStatus;
 };
+
+#endif
