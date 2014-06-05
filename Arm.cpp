@@ -1,24 +1,35 @@
 #include "Arm.h"
-#include <Servo.h>
+//#include <Servo.h>
+#include "Arduino.h"
 /**
  * 
  */
-HANDSTATUS Arm::grab(){
+Arm::Arm(int controlPin){
+ this->controlPin=controlPin;
+ hand.attach(controlPin);
+} 
 
+ 
+void Arm::grab(){
+  //lower(); 
+  closeHand();
+  //raise();
 }
 /**
  * Attempts to close the hand by turning the servo controlling the claw
  */
-HANDSTATUS Arm::closeHand(){
-	hand.write(0);
-	return CLOSED;
+void Arm::closeHand(){
+  hand.write(1);
+  delay(500);
 }
 
 /**
  * Opens the hand as wide as possible using the servo at the hand
  */
 void Arm::openHand(){
-	hand.write(180);
+  
+  hand.write(160);
+  delay(500);  
 }
 
 /**
@@ -39,6 +50,6 @@ void Arm::lower(){
  * Turns the wrist using a servo to a given angle
  */
 void Arm::setWrist(int theta){
-	if(theta<=180 && theta >=0)
-		wrist.write(theta);
+  if(theta<=180 && theta >=0)
+    wrist.write(theta);
 }

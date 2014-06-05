@@ -1,21 +1,22 @@
 #include <Servo.h>
 class Arm {
 	public:
-	enum HANDSTATUS { CLOSED, GRABBING, OPEN  };
+	//enum HANDSTATUS { CLOSED, GRABBING, OPEN  };
 	Arm(int controlPin);
-	HANDSTATUS grab();
+	void grab();
 
 	void openHand();
-	HANDSTATUS closeHand();
+	void closeHand();
 	void raise();
 	void lower();
 	void setWrist(int theta);
+        void moveArm(int startTheta, int endTheta);
 
-	HANDSTATUS getHandStatus();
+	void getHandStatus();
 
 	private:
 	int controlPin;
-	HANDSTATUS handStatus;
+	//void handStatus;
 	Servo hand;
 	Servo wrist;
 };
