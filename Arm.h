@@ -2,7 +2,7 @@
 #include <Servo.h>
 class Arm {
 	public:
-	Arm(int controlPin);
+	Arm();
 	void grab();
 
 	void openHand();
@@ -14,7 +14,6 @@ class Arm {
 
 
 	private:
-	int controlPin;
 	Servo hand;
 	Servo wrist;
 };

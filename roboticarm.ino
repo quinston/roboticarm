@@ -4,7 +4,7 @@
 Arm *arm; //can't initialize before setup()
 void setup() {
   Serial.begin(9600);
-  arm= new Arm(9); //initialize here instead
+  arm= new Arm(); //initialize here instead
   
 }
 

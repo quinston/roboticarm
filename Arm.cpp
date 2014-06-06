@@ -4,9 +4,8 @@
 /**
  * 
  */
-Arm::Arm(int i) : controlPin(i) {
- this->controlPin=controlPin;
- hand.attach(controlPin);
+Arm::Arm()  {
+ hand.attach(9);
  wrist.attach(10);
 } 
 
