@@ -10,11 +10,22 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
-  
-  Serial.println("Picking up now!");
-  arm->closeHand();
-  Serial.println("OPENING HAND!");
-  delay(2000);
-  arm->openHand();
-  delay(2000);
+  while (Serial.available() > 0) {
+    int incomingByte = Serial.read();
+    
+    switch (incomingByte) {
+       case 'r':
+        arm->raise();
+        break;
+       case 'l':
+        arm->lower();
+       break;
+      case 'o':
+      arm->openHand();
+      break;
+      case 'c':
+      arm->closeHand();
+      break;
+    }
+  }
 }
