@@ -19,4 +19,3 @@ class Arm {
 	Servo wrist;
 };
 
-#endif
