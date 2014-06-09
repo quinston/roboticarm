@@ -1,7 +1,7 @@
 
 #include <Servo.h>
-class Arm {
-	public:
+#include<AFMotor.h>
+struct Arm {
 	Arm();
 	void grab();
 
@@ -12,9 +12,11 @@ class Arm {
 	void setWrist(int theta);
         void moveArm(int startTheta, int endTheta);
 
-
-	private:
 	Servo hand;
 	Servo wrist;
+        AF_DCMotor* shoulder;
+        bool isRaised;
+        bool isHandClosed;
+        bool isWristClosed;
 };
 

@@ -1,11 +1,14 @@
 #include "Arm.h"
 #include <Servo.h>
+#include <AFMotor.h>
 
 Arm *arm; //can't initialize before setup()
+AF_DCMotor* shoulder;
 void setup() {
   Serial.begin(9600);
   arm= new Arm(); //initialize here instead
   
+  ;
 }
 
 // the loop routine runs over and over again forever:
@@ -18,7 +21,7 @@ void loop() {
         arm->raise();
         break;
        case 'l':
-        arm->lower();
+       arm->lower();
        break;
       case 'o':
       arm->openHand();
@@ -27,5 +30,14 @@ void loop() {
       arm->closeHand();
       break;
     }
+
   }
+    if (arm->isRaised) {
+      arm->raise();
+      arm->shoulder->run(FORWARD);
+      delay(20);
+      arm->shoulder->run(RELEASE);
+      delay(40);
+    }
+    
 }
