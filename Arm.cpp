@@ -5,8 +5,8 @@
  * 
  */
 Arm::Arm() :shoulder(new AF_DCMotor(1, MOTOR12_64KHZ)) , isRaised(false), isHandClosed(false), isWristClosed(false) {
- hand.attach(9);
- wrist.attach(10);
+ hand.attach(10);
+ wrist.attach(9);
  
   shoulder->setSpeed(255);
 } 
@@ -22,16 +22,13 @@ void Arm::grab(){
  */
 void Arm::closeHand(){
   hand.write(1);
-  delay(500);
 }
 
 /**
  * Opens the hand as wide as possible using the servo at the hand
  */
 void Arm::openHand(){
-  
   hand.write(160);
-  delay(500);  
 }
 
 /**

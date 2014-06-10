@@ -29,11 +29,15 @@ void loop() {
       case 'c':
       arm->closeHand();
       break;
+      case 'a':
+      arm->setWrist(90);
+      break;
+      case 'd':
+      arm->setWrist(160);
     }
 
   }
     if (arm->isRaised) {
-      arm->raise();
       arm->shoulder->run(FORWARD);
       delay(20);
       arm->shoulder->run(RELEASE);
