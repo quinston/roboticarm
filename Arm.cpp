@@ -1,22 +1,16 @@
 #include "Arm.h"
 //#include <Servo.h>
 #include "Arduino.h"
-/**
- * 
- */
-Arm::Arm() :shoulder(new AF_DCMotor(1, MOTOR12_64KHZ)) , isRaised(false), isHandClosed(false), isWristClosed(false) {
- hand.attach(10);
- wrist.attach(9);
- 
+
+Arm::Arm() :shoulder(new AF_DCMotor(1, MOTOR12_64KHZ))  {
+  /* Set up servo ports */
+  hand.attach(10);
+  wrist.attach(9);
+  /* Set shoulder gear motor to full speed */
   shoulder->setSpeed(255);
 } 
 
  
-void Arm::grab(){
-  //lower(); 
-  closeHand();
-  //raise();
-}
 /**
  * Attempts to close the hand by turning the servo controlling the claw
  */
@@ -46,7 +40,7 @@ void Arm::raise(){
  */
 void Arm::lower(){
   isRaised = false;
-  /* give it momentum */
+  /* Give  it momentum to fall (beat friction) */
   shoulder->run(BACKWARD);
   delay(100);
   shoulder->run(RELEASE);

@@ -7,11 +7,8 @@ AF_DCMotor* shoulder;
 void setup() {
   Serial.begin(9600);
   arm= new Arm(); //initialize here instead
-  
-  ;
 }
 
-// the loop routine runs over and over again forever:
 void loop() {
   while (Serial.available() > 0) {
     int incomingByte = Serial.read();
@@ -38,6 +35,7 @@ void loop() {
 
   }
     if (arm->isRaised) {
+      /* Maintains the upright position by repeatedly driving the motor */
       arm->shoulder->run(FORWARD);
       delay(20);
       arm->shoulder->run(RELEASE);
